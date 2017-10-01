@@ -1,5 +1,8 @@
 module Msgs exposing (..)
 
+import Models exposing (Pizza)
+import RemoteData exposing (WebData)
+
 
 type Msg
-    = NoOp
+    = OnFetchPizzas (WebData (List Pizza))
