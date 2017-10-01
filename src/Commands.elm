@@ -2,32 +2,38 @@ module Commands exposing (..)
 
 import Http
 import Json.Decode as Decode
-import Json.Decode.Pipeline exposing (decode, required)
+import Json.Decode.Pipeline exposing (decode, required, optional)
 import Msgs exposing (Msg)
-import Models exposing (PizzaId, Pizza)
+import Models exposing (SlideId, Slide, SlideContent)
 import RemoteData
 
 
-fetchPizzas : Cmd Msg
-fetchPizzas =
-    Http.get fetchPizzasUrl pizzasDecoder
+fetchSlides : Cmd Msg
+fetchSlides =
+    Http.get fetchSlidesUrl slidesDecoder
         |> RemoteData.sendRequest
-        |> Cmd.map Msgs.OnFetchPizzas
+        |> Cmd.map Msgs.OnFetchSlides
 
 
-fetchPizzasUrl : String
-fetchPizzasUrl =
-    "http://localhost:4000/pizzaList"
+fetchSlidesUrl : String
+fetchSlidesUrl =
+    "http://localhost:4000/slideList"
 
 
-pizzasDecoder : Decode.Decoder (List Pizza)
-pizzasDecoder =
-    Decode.list pizzaDecoder
+slidesDecoder : Decode.Decoder (List Slide)
+slidesDecoder =
+    Decode.list slideDecoder
 
 
-pizzaDecoder : Decode.Decoder Pizza
-pizzaDecoder =
-    decode Pizza
+slideDecoder : Decode.Decoder Slide
+slideDecoder =
+    decode Slide
         |> required "id" Decode.string
-        |> required "name" Decode.string
-        |> required "price" Decode.float
+        |> required "slideType" Decode.string
+        |> required "heading" Decode.string
+        |> required "content" Decode.string
+
+
+
+--|> required "content" Decode.float
+-- Add a contentDecoder??

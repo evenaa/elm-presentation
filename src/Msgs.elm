@@ -1,10 +1,10 @@
 module Msgs exposing (..)
 
-import Models exposing (Pizza)
+import Models exposing (Slide)
 import Navigation exposing (Location)
 import RemoteData exposing (WebData)
 
 
 type Msg
-    = OnFetchPizzas (WebData (List Pizza))
+    = OnFetchSlides (WebData (List Slide))
     | OnLocationChange Location

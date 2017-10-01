@@ -1,16 +1,15 @@
 module Routing exposing (..)
 
 import Navigation exposing (..)
-import Models exposing (PizzaId, Route(..))
+import Models exposing (SlideId, Route(..))
 import UrlParser exposing (..)
 
 
 matchers : Parser (Route -> a) a
 matchers =
     oneOf
-        [ map PizzasRoute top
-        , map PizzaRoute (s "pizza" </> string)
-        , map PizzasRoute (s "pizzas")
+        [ map IntroRoute top
+        , map SlideRoute (s "slide" </> string)
         ]
 
 
@@ -24,11 +23,11 @@ parseLocation location =
             NotFoundRoute
 
 
-pizzasPath : String
-pizzasPath =
-    "#pizzas"
+introPath : String
+introPath =
+    ""
 
 
-pizzaPath : PizzaId -> String
-pizzaPath id =
-    "#pizza/" ++ id
+slidePath : SlideId -> String
+slidePath id =
+    "#slide/" ++ id

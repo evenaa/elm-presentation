@@ -8,8 +8,8 @@ import Routing exposing (parseLocation)
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Msgs.OnFetchPizzas response ->
-            ( { model | pizzas = response }, Cmd.none )
+        Msgs.OnFetchSlides response ->
+            ( { model | slides = response }, Cmd.none )
 
         Msgs.OnLocationChange location ->
             let
