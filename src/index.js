@@ -1,4 +1,4 @@
-require('./main.css');
+require('./css/dimension.css');
 var logoPath = require('./logo.svg');
 var Elm = require('./Main.elm');
 
