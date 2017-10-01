@@ -1,10 +1,11 @@
 module Pizzas.List exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (class, href)
 import Msgs exposing (Msg)
 import Models exposing (Pizza)
 import RemoteData exposing (WebData)
+import Routing exposing (pizzaPath)
 
 
 view : WebData (List Pizza) -> Html Msg
@@ -61,5 +62,17 @@ pizzaRow pizza =
         [ td [] [ text pizza.id ]
         , td [] [ text pizza.name ]
         , td [] [ text (toString pizza.price) ]
-        , td [] []
+        , td [] [ detailBtn pizza ]
         ]
+
+
+detailBtn : Pizza -> Html.Html Msg
+detailBtn pizza =
+    let
+        path =
+            pizzaPath pizza.id
+    in
+        a [ class "btn regular", href path ]
+            [ i [ class "fa fa-pencil mr1" ] []
+            , text "Details"
+            ]

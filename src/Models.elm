@@ -4,12 +4,16 @@ import RemoteData exposing (WebData)
 
 
 type alias Model =
-    { pizzas : WebData (List Pizza) }
+    { pizzas : WebData (List Pizza)
+    , route : Route
+    }
 
 
-initialModel : Model
-initialModel =
-    { pizzas = RemoteData.Loading }
+initialModel : Route -> Model
+initialModel route =
+    { pizzas = RemoteData.Loading
+    , route = route
+    }
 
 
 type alias PizzaId =
@@ -21,3 +25,9 @@ type alias Pizza =
     , name : String
     , price : Float
     }
+
+
+type Route
+    = PizzasRoute
+    | PizzaRoute PizzaId
+    | NotFoundRoute

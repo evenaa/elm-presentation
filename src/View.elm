@@ -3,8 +3,10 @@ module View exposing (..)
 import Html exposing (Html, div, text, header, a, nav, ul, li, img, h1, p)
 import Html.Attributes exposing (id, class, src, alt, href)
 import Msgs exposing (Msg)
-import Models exposing (Model)
+import Models exposing (Model, PizzaId)
 import Pizzas.List
+import Pizzas.Order
+import RemoteData
 
 
 view : Model -> Html Msg
@@ -51,4 +53,44 @@ view model =
 
 page : Model -> Html Msg
 page model =
-    Pizzas.List.view model.pizzas
+    case model.route of
+        Models.PizzasRoute ->
+            Pizzas.List.view model.pizzas
+
+        Models.PizzaRoute id ->
+            pizzaOrderPage model id
+
+        Models.NotFoundRoute ->
+            notFoundView
+
+
+pizzaOrderPage : Model -> PizzaId -> Html Msg
+pizzaOrderPage model pizzaId =
+    case model.pizzas of
+        RemoteData.NotAsked ->
+            text ""
+
+        RemoteData.Loading ->
+            text "Loading..."
+
+        RemoteData.Success pizzas ->
+            let
+                maybePizza =
+                    pizzas
+                        |> List.filter (\pizza -> pizza.id == pizzaId)
+                        |> List.head
+            in
+                case maybePizza of
+                    Just pizza ->
+                        Pizzas.Order.view pizza
+
+                    Nothing ->
+                        notFoundView
+
+        RemoteData.Failure error ->
+            text (toString error)
+
+
+notFoundView : Html msg
+notFoundView =
+    text "Not found"
