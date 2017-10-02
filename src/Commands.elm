@@ -4,7 +4,7 @@ import Http
 import Json.Decode as Decode
 import Json.Decode.Pipeline exposing (decode, required, optional)
 import Msgs exposing (Msg)
-import Models exposing (SlideId, Slide, SlideContent)
+import Models exposing (SlideId, Slide, SlideContent, SlideType)
 import RemoteData
 
 
@@ -34,7 +34,7 @@ slideDecoder : Decode.Decoder Slide
 slideDecoder =
     decode Slide
         |> required "id" Decode.int
-        |> required "slideType" Decode.string
+        |> required "slideType" slideTypeDecoder
         |> required "heading" Decode.string
         |> required "content" (Decode.list (slideContentDecoder))
 
@@ -44,6 +44,21 @@ slideContentDecoder =
     decode SlideContent
         |> required "num" Decode.string
         |> required "contentString" Decode.string
+
+
+headingDecoder : Decode.Decoder SlideType
+headingDecoder =
+    Decode.map Models.Heading Decode.string
+
+
+infoDecoder : Decode.Decoder SlideType
+infoDecoder =
+    Decode.map Models.Info Decode.string
+
+
+slideTypeDecoder : Decode.Decoder SlideType
+slideTypeDecoder =
+    Decode.oneOf [ headingDecoder, infoDecoder ]
 
 
 

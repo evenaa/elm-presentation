@@ -4,7 +4,7 @@ import Html exposing (..)
 import Html.Events exposing (onClick)
 import Html.Attributes exposing (class, href)
 import Msgs exposing (Msg)
-import Models exposing (Slide, SlideContent)
+import Models exposing (Slide, SlideContent, SlideType)
 import RemoteData exposing (WebData)
 import Routing exposing (slidePath)
 
@@ -18,12 +18,22 @@ view slide =
 
 slideView : Slide -> Html Msg
 slideView slide =
-    div [ class slide.slideType ]
+    div [ class (slideClass slide.slideType) ]
         [ h1 [] [ text slide.heading ]
         , h2 [] (List.map (slideContent) slide.content)
         , div [ class "slide-nav" ]
             (slideNav slide)
         ]
+
+
+slideClass : SlideType -> String
+slideClass slideType =
+    case slideType of
+        Models.Heading class ->
+            class
+
+        Models.Info class ->
+            class
 
 
 slideContent : SlideContent -> Html Msg

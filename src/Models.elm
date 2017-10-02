@@ -22,9 +22,13 @@ type alias SlideId =
     Int
 
 
+type alias SlideClass =
+    String
+
+
 type alias Slide =
     { id : SlideId
-    , slideType : String
+    , slideType : SlideType
     , heading : String
     , content : List SlideContent
     }
@@ -34,6 +38,11 @@ type alias SlideContent =
     { num : String
     , contentString : String
     }
+
+
+type SlideType
+    = Heading String
+    | Info String
 
 
 type Route

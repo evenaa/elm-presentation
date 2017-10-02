@@ -109,11 +109,25 @@
   /*display: inline-block;*/
   position: absolute;
   bottom: 2em;
-  left: 42%;
+  left: 47%;
+	padding: 1em;
   /*padding-top: 4em;*/
 }
 
 .slide-number {
   padding: 0 2em;
   font-size: 1.5em;
+}
+
+@-ms-viewport {
+	width: device-width;
+}
+
+@media screen and (min-width: 1024px) {
+
+	.slide-nav {
+	  font-size: 36px;
+	}
+
+
 }
