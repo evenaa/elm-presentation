@@ -10,7 +10,7 @@ import RemoteData
 
 fetchSlides : Cmd Msg
 fetchSlides =
-    Http.get fetchSlidesUrl slidesDecoder
+    Http.get fetchLocalSlidesUrl slidesDecoder
         |> RemoteData.sendRequest
         |> Cmd.map Msgs.OnFetchSlides
 
@@ -18,6 +18,11 @@ fetchSlides =
 fetchSlidesUrl : String
 fetchSlidesUrl =
     "http://localhost:4000/slideList"
+
+
+fetchLocalSlidesUrl : String
+fetchLocalSlidesUrl =
+    "./src/Slides/slides.json"
 
 
 slidesDecoder : Decode.Decoder (List Slide)
@@ -31,7 +36,14 @@ slideDecoder =
         |> required "id" Decode.string
         |> required "slideType" Decode.string
         |> required "heading" Decode.string
-        |> required "content" Decode.string
+        |> required "content" (Decode.list (slideContentDecoder))
+
+
+slideContentDecoder : Decode.Decoder SlideContent
+slideContentDecoder =
+    decode SlideContent
+        |> required "num" Decode.string
+        |> required "contentString" Decode.string
 
 
 

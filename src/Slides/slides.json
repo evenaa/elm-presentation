@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "slideType": "heading-slide",
+    "heading": "Elm",
+    "content": [
+      {
+        "num": "1",
+        "contentString": "A functional webapp alternative"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "slideType": "info-slide",
+    "heading": "Elm 2",
+    "content": [
+      {
+        "num": "1",
+        "contentString": "An alternative"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "slideType": "info-slide",
+    "heading": "Elm 3",
+    "content": [
+      {
+        "num": "1",
+        "contentString": "A functional"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "slideType": "info-slide",
+    "heading": "Elm 4",
+    "content": [
+      {
+        "num": "1",
+        "contentString": "Questions?"
+      }
+    ]
+  }
+]

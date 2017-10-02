@@ -6,6 +6,7 @@ import RemoteData exposing (WebData)
 type alias Model =
     { slides : WebData (List Slide)
     , route : Route
+    , slidePage : Int
     }
 
 
@@ -13,6 +14,7 @@ initialModel : Route -> Model
 initialModel route =
     { slides = RemoteData.Loading
     , route = route
+    , slidePage = 1
     }
 
 
@@ -24,7 +26,7 @@ type alias Slide =
     { id : SlideId
     , slideType : String
     , heading : String
-    , content : String
+    , content : List SlideContent
     }
 
 
