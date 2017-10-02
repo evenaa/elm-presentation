@@ -1,7 +1,8 @@
 module View exposing (..)
 
-import Html exposing (Html, div, text, header, a, nav, ul, li, img, h1, p)
+import Html exposing (Html, div, text, header, a, nav, ul, li, img, h1, h2, p)
 import Html.Attributes exposing (id, class, src, alt, href)
+import Html.Events exposing (onClick)
 import Msgs exposing (Msg)
 import Models exposing (Model, SlideId)
 import Slides.SlideShow
@@ -22,14 +23,17 @@ page model =
             introView model
 
         Models.SlideRoute id ->
-            slidePage model id
+            slidePage model
+
+        Models.PresentationRoute ->
+            slidePage model
 
         Models.NotFoundRoute ->
             notFoundView
 
 
-slidePage : Model -> SlideId -> Html Msg
-slidePage model slideId =
+slidePage : Model -> Html Msg
+slidePage model =
     case model.slides of
         RemoteData.NotAsked ->
             text ""
@@ -41,7 +45,7 @@ slidePage model slideId =
             let
                 maybeSlide =
                     slides
-                        |> List.filter (\slide -> slide.id == slideId)
+                        |> List.filter (\slide -> slide.id == model.slidePage)
                         |> List.head
             in
                 case maybeSlide of
@@ -55,43 +59,46 @@ slidePage model slideId =
             text (toString error)
 
 
+presentationPage : Model -> Html Msg
+presentationPage model =
+    slidePage model
+
+
 introView : Model -> Html Msg
 introView model =
-    div [ id "wrapper" ]
-        [ header [ id "header" ]
-            [ div [ class "logo" ]
-                [ img [ class "logoImage", src "src/images/iconalpha_white.png", alt "logo" ] []
-                ]
-            , div [ class "content" ]
-                [ div [ class "inner" ]
-                    [ h1 []
-                        [ text "Elm" ]
-                    , p [] [ text "A functional webapp alternative" ]
+    let
+        verb =
+            if model.slidePage == 1 then
+                "Start"
+            else
+                "Continue"
+    in
+        div [ id "wrapper" ]
+            [ header [ id "header" ]
+                [ div [ class "logo" ]
+                    [ img [ class "logoImage", src "src/images/iconalpha_white.png", alt "logo" ] []
                     ]
-                ]
-            , nav []
-                [ ul []
-                    [ li []
-                        [ a [ href "#slide/1" ] [ text "Intro" ]
+                , div [ class "content" ]
+                    [ div [ class "inner" ]
+                        [ h1 []
+                            [ text "Elm" ]
+                        , p [] [ text "A functional webapp alternative" ]
                         ]
-                    , li []
-                        [ a [ href "#work" ] [ text "Work" ]
-                        ]
-                    , li []
-                        [ a [ href "#work" ] [ text "About" ]
-                        ]
-                    , li []
-                        [ a [ href "#work" ] [ text "Contact" ]
-                        ]
-                    , li []
-                        [ a [ href "#work" ] [ text "Elements" ]
+                    ]
+                , nav []
+                    [ ul []
+                        [ li []
+                            [ a [ href "#presentation" ] [ text (verb ++ " presentation") ]
+                            ]
                         ]
                     ]
                 ]
             ]
-        ]
 
 
-notFoundView : Html msg
+notFoundView : Html Msg
 notFoundView =
-    text "Not found"
+    div [ class "heading-slide" ]
+        [ h1 [] [ text "The End" ]
+        , h2 [ onClick Msgs.Home ] [ text "Home" ]
+        ]

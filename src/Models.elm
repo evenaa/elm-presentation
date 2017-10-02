@@ -19,7 +19,7 @@ initialModel route =
 
 
 type alias SlideId =
-    String
+    Int
 
 
 type alias Slide =
@@ -39,4 +39,5 @@ type alias SlideContent =
 type Route
     = IntroRoute
     | SlideRoute SlideId
+    | PresentationRoute
     | NotFoundRoute

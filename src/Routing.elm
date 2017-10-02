@@ -9,7 +9,8 @@ matchers : Parser (Route -> a) a
 matchers =
     oneOf
         [ map IntroRoute top
-        , map SlideRoute (s "slide" </> string)
+        , map SlideRoute (s "slide" </> int)
+        , map PresentationRoute (s "presentation")
         ]
 
 
@@ -28,6 +29,11 @@ introPath =
     ""
 
 
-slidePath : SlideId -> String
+slidePath : Int -> String
 slidePath id =
-    "#slide/" ++ id
+    "#slide/" ++ toString id
+
+
+homeRoute : Route
+homeRoute =
+    IntroRoute

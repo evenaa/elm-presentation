@@ -33,7 +33,7 @@ slidesDecoder =
 slideDecoder : Decode.Decoder Slide
 slideDecoder =
     decode Slide
-        |> required "id" Decode.string
+        |> required "id" Decode.int
         |> required "slideType" Decode.string
         |> required "heading" Decode.string
         |> required "content" (Decode.list (slideContentDecoder))

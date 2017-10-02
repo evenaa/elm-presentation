@@ -1,6 +1,7 @@
 module Slides.SlideShow exposing (..)
 
 import Html exposing (..)
+import Html.Events exposing (onClick)
 import Html.Attributes exposing (class, href)
 import Msgs exposing (Msg)
 import Models exposing (Slide, SlideContent)
@@ -12,13 +13,6 @@ view : Slide -> Html Msg
 view slide =
     div []
         [ slideView slide
-        ]
-
-
-nav : Slide -> Html Msg
-nav slide =
-    div []
-        [ div [ class "left p2" ] [ text ("Slides " ++ slide.id) ]
         ]
 
 
@@ -39,7 +33,7 @@ slideContent content =
 
 slideNav : Slide -> List (Html Msg)
 slideNav slide =
-    [ span [ class "fa fa-arrow-left" ] []
-    , span [ class "slide-number" ] [ text slide.id ]
-    , span [ class "fa fa-arrow-right" ] []
+    [ span [ class "fa fa-arrow-left", onClick Msgs.PrevSlide ] []
+    , span [ class "slide-number" ] [ text (toString slide.id) ]
+    , span [ class "fa fa-arrow-right", onClick Msgs.NextSlide ] []
     ]

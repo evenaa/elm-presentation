@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": 1,
     "slideType": "heading-slide",
     "heading": "Elm",
     "content": [
@@ -11,18 +11,26 @@
     ]
   },
   {
-    "id": "2",
+    "id": 2,
     "slideType": "info-slide",
-    "heading": "Elm 2",
+    "heading": "Values",
     "content": [
       {
         "num": "1",
+        "contentString": "An alternative"
+      },
+      {
+        "num": "2",
+        "contentString": "An alternative"
+      },
+      {
+        "num": "3",
         "contentString": "An alternative"
       }
     ]
   },
   {
-    "id": "3",
+    "id": 3,
     "slideType": "info-slide",
     "heading": "Elm 3",
     "content": [
@@ -33,7 +41,7 @@
     ]
   },
   {
-    "id": "4",
+    "id": 4,
     "slideType": "info-slide",
     "heading": "Elm 4",
     "content": [
