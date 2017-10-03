@@ -1,6 +1,6 @@
 module Msgs exposing (..)
 
-import Models exposing (Slide, Model)
+import Models exposing (Model, Slide)
 import Navigation exposing (Location)
 import RemoteData exposing (WebData)
 
