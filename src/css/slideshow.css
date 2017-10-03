@@ -90,14 +90,15 @@
   text-align: center;
 }
 
-.heading-slide h1, .heading-slide h2 {
+.heading-slide h1 {
   font-size: 7em;
-  margin-top: 1em;
+	margin-top: 0.5em;
 }
 
 .heading-slide h2 {
   font-size: 3em;
 	line-height: 1.5em;
+	margin-top: 1em;
 }
 
 .info-slide h1 {
@@ -107,10 +108,10 @@
 
 .slide-nav {
   /*display: inline-block;*/
-  position: absolute;
-  bottom: 2em;
-  left: 47%;
-	padding: 1em;
+  /*position: absolute;*/
+  /*bottom: 2em;*/
+  /*left: 47%;*/
+	padding-top: 1em;
   /*padding-top: 4em;*/
 }
 

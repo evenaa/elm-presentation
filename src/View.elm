@@ -1,6 +1,6 @@
 module View exposing (..)
 
-import Html exposing (Html, div, text, header, a, nav, ul, li, img, h1, h2, p)
+import Html exposing (Html, div, text, header, a, nav, ul, li, img, h1, h2, p, button)
 import Html.Attributes exposing (id, class, src, alt, href)
 import Html.Events exposing (onClick)
 import Msgs exposing (Msg)
@@ -20,13 +20,19 @@ page : Model -> Html Msg
 page model =
     case model.route of
         Models.IntroRoute ->
-            introView model
+            if model.slidePage == 0 then
+                introView model
+            else
+                slidePage model
 
         Models.SlideRoute id ->
             slidePage model
 
         Models.PresentationRoute ->
-            slidePage model
+            if model.slidePage > 0 then
+                slidePage model
+            else
+                introView model
 
         Models.NotFoundRoute ->
             notFoundView
@@ -68,7 +74,7 @@ introView : Model -> Html Msg
 introView model =
     let
         verb =
-            if model.slidePage == 1 then
+            if model.slidePage <= 1 then
                 "Start"
             else
                 "Continue"
@@ -88,7 +94,7 @@ introView model =
                 , nav []
                     [ ul []
                         [ li []
-                            [ a [ href "#presentation" ] [ text (verb ++ " presentation") ]
+                            [ button [ onClick Msgs.Start ] [ text (verb ++ " presentation") ]
                             ]
                         ]
                     ]

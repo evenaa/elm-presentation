@@ -1,8 +1,10 @@
 module Update exposing (..)
 
 import Msgs exposing (Msg(..))
-import Models exposing (Model)
+import Models exposing (Model, Slide)
 import Routing exposing (parseLocation, homeRoute)
+import Random exposing (..)
+import RemoteData
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -16,16 +18,41 @@ update msg model =
                 newRoute =
                     parseLocation location
             in
-                ( { model | route = newRoute }, Cmd.none )
+                if newRoute == Models.PresentationRoute then
+                    { model | route = newRoute }
+                        |> update (Msgs.Start)
+                else
+                    ( { model | route = newRoute }, Cmd.none )
+
+        Msgs.Start ->
+            ( { model | slidePage = 1 }, Cmd.none )
 
         Msgs.NextSlide ->
-            ( { model | slidePage = increment model.slidePage }, Cmd.none )
+            nextSlide model
 
         Msgs.PrevSlide ->
-            ( { model | slidePage = decrement model.slidePage }, Cmd.none )
+            prevSlide model
 
         Msgs.Home ->
-            ( { model | route = homeRoute, slidePage = 1 }, Cmd.none )
+            ( { model | route = homeRoute, slidePage = 0 }, Cmd.none )
+
+        Msgs.KeyMsg keycode ->
+            if keycode == 39 then
+                nextSlide model
+            else if keycode == 37 then
+                prevSlide model
+            else
+                ( model, Cmd.none )
+
+
+nextSlide : Model -> ( Model, Cmd Msg )
+nextSlide model =
+    ( { model | slidePage = increment model.slidePage }, Cmd.none )
+
+
+prevSlide : Model -> ( Model, Cmd Msg )
+prevSlide model =
+    ( { model | slidePage = decrement model.slidePage }, Cmd.none )
 
 
 increment : Int -> Int
@@ -35,7 +62,7 @@ increment a =
 
 decrement : Int -> Int
 decrement a =
-    if a <= 1 then
-        1
+    if a <= 0 then
+        0
     else
         a - 1

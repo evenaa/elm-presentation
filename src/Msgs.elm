@@ -3,6 +3,7 @@ module Msgs exposing (..)
 import Models exposing (Model, Slide)
 import Navigation exposing (Location)
 import RemoteData exposing (WebData)
+import Keyboard
 
 
 type Msg
@@ -10,4 +11,6 @@ type Msg
     | OnLocationChange Location
     | NextSlide
     | PrevSlide
+    | Start
     | Home
+    | KeyMsg Keyboard.KeyCode

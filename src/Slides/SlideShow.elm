@@ -19,10 +19,10 @@ view slide =
 slideView : Slide -> Html Msg
 slideView slide =
     div [ class (slideClass slide.slideType) ]
-        [ h1 [] [ text slide.heading ]
-        , h2 [] (List.map (slideContent) slide.content)
-        , div [ class "slide-nav" ]
+        [ div [ class "slide-nav" ]
             (slideNav slide)
+        , h1 [] [ text slide.heading ]
+        , h2 [] (List.map (slideContent) slide.content)
         ]
 
 

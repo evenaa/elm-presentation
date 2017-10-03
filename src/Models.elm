@@ -14,7 +14,7 @@ initialModel : Route -> Model
 initialModel route =
     { slides = RemoteData.Loading
     , route = route
-    , slidePage = 1
+    , slidePage = 0
     }
 
 

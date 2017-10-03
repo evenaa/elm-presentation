@@ -7,6 +7,7 @@ import Navigation exposing (Location)
 import Routing
 import Update exposing (update)
 import View exposing (view)
+import Keyboard
 
 
 init : Location -> ( Model, Cmd Msg )
@@ -20,7 +21,9 @@ init location =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    Sub.batch
+        [ Keyboard.downs Msgs.KeyMsg
+        ]
 
 
 main : Program Never Model Msg
