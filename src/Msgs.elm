@@ -4,6 +4,7 @@ import Models exposing (Model, Slide)
 import Navigation exposing (Location)
 import RemoteData exposing (WebData)
 import Keyboard
+import Time exposing (Time)
 
 
 type Msg
@@ -14,3 +15,4 @@ type Msg
     | Start
     | Home
     | KeyMsg Keyboard.KeyCode
+    | Tick Time

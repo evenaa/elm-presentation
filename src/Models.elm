@@ -1,12 +1,14 @@
 module Models exposing (..)
 
 import RemoteData exposing (WebData)
+import Time exposing (Time)
 
 
 type alias Model =
     { slides : WebData (List Slide)
     , route : Route
     , slidePage : Int
+    , time : Time
     }
 
 
@@ -15,6 +17,7 @@ initialModel route =
     { slides = RemoteData.Loading
     , route = route
     , slidePage = 0
+    , time = 0
     }
 
 

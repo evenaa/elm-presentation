@@ -44,6 +44,9 @@ update msg model =
             else
                 ( model, Cmd.none )
 
+        Msgs.Tick newTime ->
+            ( { model | time = newTime }, Cmd.none )
+
 
 nextSlide : Model -> ( Model, Cmd Msg )
 nextSlide model =

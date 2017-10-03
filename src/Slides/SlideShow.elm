@@ -7,19 +7,22 @@ import Msgs exposing (Msg)
 import Models exposing (Slide, SlideContent, SlideType)
 import RemoteData exposing (WebData)
 import Routing exposing (slidePath)
+import Time.Clock exposing (view)
+import Time exposing (Time)
 
 
-view : Slide -> Html Msg
-view slide =
+view : Slide -> Time -> Html Msg
+view slide time =
     div []
-        [ slideView slide
+        [ slideView slide time
         ]
 
 
-slideView : Slide -> Html Msg
-slideView slide =
+slideView : Slide -> Time -> Html Msg
+slideView slide time =
     div [ class (slideClass slide.slideType) ]
-        [ div [ class "slide-nav" ]
+        [ Time.Clock.view time
+        , div [ class "slide-nav" ]
             (slideNav slide)
         , h1 [] [ text slide.heading ]
         , h2 [] (List.map (slideContent) slide.content)

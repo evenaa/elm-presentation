@@ -8,6 +8,7 @@ import Routing
 import Update exposing (update)
 import View exposing (view)
 import Keyboard
+import Time exposing (Time, second)
 
 
 init : Location -> ( Model, Cmd Msg )
@@ -23,6 +24,7 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
         [ Keyboard.downs Msgs.KeyMsg
+        , Time.every second Msgs.Tick
         ]
 
 

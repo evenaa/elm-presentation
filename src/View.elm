@@ -56,7 +56,7 @@ slidePage model =
             in
                 case maybeSlide of
                     Just slide ->
-                        Slides.SlideShow.view slide
+                        Slides.SlideShow.view slide model.time
 
                     Nothing ->
                         notFoundView
