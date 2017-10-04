@@ -1,4 +1,4 @@
-require('./css/dimension.css');
+//require('./css/dimension.css');
 require('./css/slideshow.css');
 require('./css/font-awesome-4.7.0/css/font-awesome.min.css');
 

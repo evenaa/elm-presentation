@@ -1,54 +1,42 @@
 [
   {
     "id": 1,
-    "slideType": "heading-slide",
-    "heading": "Elm",
-    "content": [
-      {
-        "num": "1",
-        "contentString": "A functional webapp alternative"
-      }
-    ]
+    "slideType": "heading-slide"
   },
   {
     "id": 2,
-    "slideType": "info-slide",
-    "heading": "Values",
-    "content": [
-      {
-        "num": "1",
-        "contentString": "An alternative"
-      },
-      {
-        "num": "2",
-        "contentString": "An alternative"
-      },
-      {
-        "num": "3",
-        "contentString": "An alternative"
-      }
-    ]
+    "slideType": "info-slide"
   },
   {
     "id": 3,
-    "slideType": "info-slide",
-    "heading": "Elm 3",
-    "content": [
-      {
-        "num": "1",
-        "contentString": "A functional"
-      }
-    ]
+    "slideType": "info-slide"
   },
   {
     "id": 4,
-    "slideType": "info-slide",
-    "heading": "Elm 4",
-    "content": [
-      {
-        "num": "1",
-        "contentString": "Questions?"
-      }
-    ]
+    "slideType": "info-slide"
+  },
+  {
+    "id": 5,
+    "slideType": "info-slide"
+  },
+  {
+    "id": 6,
+    "slideType": "info-slide"
+  },
+  {
+    "id": 7,
+    "slideType": "info-slide"
+  },
+  {
+    "id": 8,
+    "slideType": "info-slide"
+  },
+  {
+    "id": 9,
+    "slideType": "info-slide"
+  },
+  {
+    "id": 10,
+    "slideType": "info-slide"
   }
 ]

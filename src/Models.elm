@@ -16,7 +16,7 @@ initialModel : Route -> Model
 initialModel route =
     { slides = RemoteData.Loading
     , route = route
-    , slidePage = 0
+    , slidePage = 9
     , time = 0
     }
 
@@ -31,21 +31,8 @@ type alias SlideClass =
 
 type alias Slide =
     { id : SlideId
-    , slideType : SlideType
-    , heading : String
-    , content : List SlideContent
+    , slideType : String
     }
-
-
-type alias SlideContent =
-    { num : String
-    , contentString : String
-    }
-
-
-type SlideType
-    = Heading String
-    | Info String
 
 
 type Route
