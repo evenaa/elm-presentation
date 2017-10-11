@@ -1,0 +1,47 @@
+
+
+Elm Intro
+- A functional programming language
+-> A function gives the same value every time for the same input
+-> Values are immutable
+
+
+
+Primitive types (Demo elm-repl)
+-> String, Int, Number, Float
+
+-> List, Array, Record, Tuple
+
+
+
+Functions (Demo Atom, Chrome)
+-> add a constant to a value
+
+-> sum two numbers
+
+-> Functions on records
+
+
+
+Types, leads to The Elm Architecture
+-> type alias (film rating)
+
+-> union type (messages in film rating, popular union type)
+
+
+
+Maybe
+-> What if film hasn't got a rating yet?
+
+
+
+Subscriptions
+-> Clock
+-> KeyEvents
+
+Ports
+
+Modules
+
+JsonParse
+-> Films
